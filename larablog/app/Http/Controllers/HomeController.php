@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\PremiumFeature;
+use Illuminate\Support\Facades\Cache;
 
 class HomeController extends Controller
 {
@@ -38,16 +39,20 @@ class HomeController extends Controller
     {
         $post = $post->load(['author', 'comments']);
 
-
         // this is just an example, there are better ways to do this
         if ($request->query('format') === 'json') {
             return $post;
         }
 
+        // since i defined connection in the model, i can just call all() here and it will work
+        // $features = PremiumFeature::all(); // -> select * from features -> it knows which database to use
+
+        // we can even cache the premium features, so that we don't have to query the database every time
+        $features = Cache::remember('users', 60,  fn() => PremiumFeature::all());
+
         return view('posts.show', [
             'post' => $post,
-            // since i defined connection in the model, i can just call all() here and it will work
-            'features' => PremiumFeature::all() 
+            'features' => $features
         ]);
     }
 }
