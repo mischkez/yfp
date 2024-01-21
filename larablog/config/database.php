@@ -2,6 +2,21 @@
 
 use Illuminate\Support\Str;
 
+$write = [
+    'host' => env('DB_HOST'),
+    'username' => env('DB_USERNAME'),
+    'password' => env('DB_PASSWORD'),
+];
+
+$reads = [
+    [
+        'host' => env('DB_READ_HOST'),
+        'username' => env('DB_READ_USERNAME'),
+        'password' => env('DB_READ_PASSWORD'),
+    ]
+    // we can add more read connections here
+];
+
 return [
 
     /*
@@ -15,7 +30,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'mysql'),
+    'default' => env('DB_CONNECTION', 'blog'),
 
     /*
     |--------------------------------------------------------------------------
@@ -32,22 +47,11 @@ return [
     | choice installed on your machine before you begin development.
     |
     */
-
     'connections' => [
-        'mysql' => [
-            'driver' => 'mysql',
-            'read' => [
-                [
-                    'host' => 'mysql_slave',
-                    'username' => 'app_read_user',
-                    'password' => 'read_password',
-                ],
-            ],
-            'write' => [
-                'host' => 'mysql_master',
-                'username' => 'app_write_user',
-                'password' => 'write_password',
-            ],
+        'blog' => [
+            'driver' => env('DB_DRIVER', 'mysql'),
+            'read' => $reads,
+            'write' => $write,
             'database' => 'blog',
             'sticky' => true, // replication lag aware will use write connection if slave is behind
             'unix_socket' => env('DB_SOCKET', ''),
@@ -62,7 +66,25 @@ return [
             ]) : [],
         ],
 
-        // we can add more connections here, for example: mariadb, postgresql, sqlite, sqlsrv, etc.
+        'blog_premium' => [
+            'driver' => env('DB_DRIVER', 'mysql'),
+            'read' => $reads,
+            'write' => $write,
+            'database' => 'blog_premium',
+            'sticky' => true,
+            'unix_socket' => env('DB_SOCKET', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
+        ],
+
+        // we can add more connections here
     ],
 
     /*
