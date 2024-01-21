@@ -1,14 +1,14 @@
 #!/bin/bash
 
-docker-compose down -v
-
 # Remove existing data
-
 sudo chown -R $USER:$USER ./mysql/master/data/
 sudo chown -R $USER:$USER ./mysql/slave/data/
 
 find ./mysql/master/data/  -mindepth 1 -not -name '.gitkeep' -delete
 find ./mysql/slave/data/  -mindepth 1 -not -name '.gitkeep' -delete
+
+# Remove existing containers and images
+docker-codmpose down -v --remove-orphans
 
 # Build and start the Docker containers
 docker-compose build
