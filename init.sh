@@ -2,8 +2,13 @@
 
 docker-compose down -v
 
-sudo rm -rf ./mysql/master/data/*
-sudo rm -rf ./mysql/slave/data/*
+# Remove existing data
+
+sudo chown -R $USER:$USER ./mysql/master/data/
+sudo chown -R $USER:$USER ./mysql/slave/data/
+
+find ./mysql/master/data/  -mindepth 1 -not -name '.gitkeep' -delete
+find ./mysql/slave/data/  -mindepth 1 -not -name '.gitkeep' -delete
 
 # Build and start the Docker containers
 docker-compose build
