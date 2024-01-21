@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\PremiumFeature;
 
 class HomeController extends Controller
 {
@@ -37,13 +38,16 @@ class HomeController extends Controller
     {
         $post = $post->load(['author', 'comments']);
 
+
         // this is just an example, there are better ways to do this
         if ($request->query('format') === 'json') {
             return $post;
         }
 
         return view('posts.show', [
-            'post' => $post
+            'post' => $post,
+            // since i defined connection in the model, i can just call all() here and it will work
+            'features' => PremiumFeature::all() 
         ]);
     }
 }
