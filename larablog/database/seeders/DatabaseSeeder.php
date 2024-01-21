@@ -4,12 +4,12 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use \App\Models\User;
-use \App\Models\Category;
-use \App\Models\Tag;
-use \App\Models\Post;
-use \App\Models\Comment;
-use \App\Models\PremiumFeature;
+use \App\Models\Blog\User;
+use \App\Models\Blog\Category;
+use \App\Models\Blog\Tag;
+use \App\Models\Blog\Post;
+use \App\Models\Blog\Comment;
+use \App\Models\BlogPremium\PremiumFeature;
 
 class DatabaseSeeder extends Seeder
 {

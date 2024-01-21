@@ -1,15 +1,18 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\BlogPremium;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PremiumFeature extends Model
+class OrderItem extends Model
 {
     use HasFactory;
 
     protected $connection = 'blog_premium';
 
-    protected $table = 'features';
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
+    }
 }

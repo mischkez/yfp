@@ -1,15 +1,15 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\BlogPremium;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\OrderItem>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\BlogPremium\Order>
  */
 class OrderItemFactory extends Factory
 {
-    protected $model = \App\Models\OrderItem::class;
+    protected $model = \App\Models\BlogPremium\Order::class;
 
     /**
      * Define the model's default state.

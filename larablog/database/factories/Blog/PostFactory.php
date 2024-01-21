@@ -1,17 +1,17 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\Blog;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use \App\Models\User;
-use \App\Models\Category;
+use \App\Models\Blog\User;
+use \App\Models\Blog\Category;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Post>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Blog\Post>
  */
 class PostFactory extends Factory
 {
-    protected $model = \App\Models\Post::class;
+    protected $model = \App\Models\Blog\Post::class;
 
     /**
      * Define the model's default state.

@@ -1,17 +1,17 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\Blog;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use \App\Models\User;
-use \App\Models\Post;
+use \App\Models\Blog\User;
+use \App\Models\Blog\Post;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Comment>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Blog\Comment>
  */
 class CommentFactory extends Factory
 {
-    protected $model = \App\Models\Comment::class;
+    protected $model = \App\Models\Blog\Comment::class;
 
     /**
      * Define the model's default state.

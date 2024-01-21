@@ -1,15 +1,15 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\Blog;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Category>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Blog\Category>
  */
 class CategoryFactory extends Factory
 {
-    protected $model = \App\Models\Category::class;
+    protected $model = \App\Models\Blog\Category::class;
 
     /**
      * Define the model's default state.

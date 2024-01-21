@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreOrderItemRequest;
 use App\Http\Requests\UpdateOrderItemRequest;
-use App\Models\OrderItem;
+use App\Models\BlogPremium\OrderItem;
 
 class OrderItemController extends Controller
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Blog;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -13,12 +13,12 @@ class Comment extends Model
 
     public function author()
     {
-        return $this->belongsTo(\App\Models\User::class, 'author_id');
+        return $this->belongsTo(User::class, 'author_id');
     }
 
     public function post()
     {
-        return $this->belongsTo(\App\Models\Post::class);
+        return $this->belongsTo(Post::class);
     }
 }
 

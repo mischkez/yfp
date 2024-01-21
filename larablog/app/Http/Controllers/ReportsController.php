@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
-use Illuminate\Http\Request;
+use App\Models\Blog\Post;
 
 class ReportsController extends Controller
 {
@@ -20,7 +19,6 @@ class ReportsController extends Controller
         //     ->take(5)
         //     ->get();
         // });
-
 
         return view('home', ['posts' => $posts]);
     }

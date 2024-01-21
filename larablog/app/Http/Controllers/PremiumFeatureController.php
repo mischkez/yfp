@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePremiumFeatureRequest;
 use App\Http\Requests\UpdatePremiumFeatureRequest;
-use App\Models\PremiumFeature;
+use App\Models\BlogPremium\PremiumFeature;
 
 class PremiumFeatureController extends Controller
 {

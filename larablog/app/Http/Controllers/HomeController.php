@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Post;
-use App\Models\PremiumFeature;
+use App\Models\Blog\Post;
+use App\Models\BlogPremium\PremiumFeature;
 use Illuminate\Support\Facades\Cache;
 
 class HomeController extends Controller
