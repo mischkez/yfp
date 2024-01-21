@@ -24,22 +24,25 @@ services:
   # MySQL Master - Slave Replication
   mysql_master:
     image: mysql:latest
-    env_file:
-      - ./mysql/master/mysql_master.env
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=blog
     container_name: "mysql_master"
     restart: "no"
     ports:
       - 4406:3306
     volumes:
-      - ./mysql/master/conf/mysql.conf.cnf:/etc/mysql/conf.d/mysql.conf.cnf
+      - ./mysql/master/mysql.conf.cnf:/etc/mysql/conf.d/mysql.conf.cnf
       - ./mysql/master/data:/var/lib/mysql
+      - ./mysql/master/migration.sql:/docker-entrypoint-initdb.d/migration.sql
     networks:
       - app-network
 
   mysql_slave:
     image: mysql:latest
-    env_file:
-      - ./mysql/slave/mysql_slave.env
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=blog
     container_name: "mysql_slave"
     restart: "no"
     ports:
@@ -47,8 +50,9 @@ services:
     depends_on:
       - mysql_master
     volumes:
-      - ./mysql/slave/conf/mysql.conf.cnf:/etc/mysql/conf.d/mysql.conf.cnf
+      - ./mysql/slave/mysql.conf.cnf:/etc/mysql/conf.d/mysql.conf.cnf
       - ./mysql/slave/data:/var/lib/mysql
+      - ./mysql/slave/migration.sql:/docker-entrypoint-initdb.d/migration.sql
     networks:
       - app-network
 

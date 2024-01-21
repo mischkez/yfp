@@ -6,4 +6,7 @@ default_authentication_plugin = mysql_native_password
 server-id = 1
 log_bin = 1
 binlog_format = ROW
-binlog_do_db = mydb
+
+# we'll have 2 dbs for now
+binlog_do_db = blog
+binlog_do_db = blog_premium

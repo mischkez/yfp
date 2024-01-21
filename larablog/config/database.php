@@ -39,18 +39,17 @@ return [
             'read' => [
                 [
                     'host' => 'mysql_slave',
-                    'username' => 'slave_user',
-                    'password' => 'slave_password',
-                    'database' => 'blog',
+                    'username' => 'app_read_user',
+                    'password' => 'read_password',
                 ],
             ],
             'write' => [
                 'host' => 'mysql_master',
-                'username' => 'master_user',
-                'password' => 'master_password',
-                'database' => 'blog',
+                'username' => 'app_write_user',
+                'password' => 'write_password',
             ],
-            'sticky' => true, // replication lag
+            'database' => 'blog',
+            'sticky' => true, // replication lag aware will use write connection if slave is behind
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
