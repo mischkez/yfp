@@ -17,3 +17,6 @@ Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/post/{post}', [App\Http\Controllers\HomeController::class, 'show'])->name('show_post');
+
+Route::get('/reports/with-most-comments', [App\Http\Controllers\ReportsController::class, 'withMostComments'])->name('reports.with_most_comments');
+Route::get('/reports/with-most-premium-features', [App\Http\Controllers\ReportsController::class, 'withMostPremiumFeatures'])->name('reports.with_most_premium_features');

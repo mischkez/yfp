@@ -8,7 +8,9 @@
     @each('posts._post', $posts, 'post')
 </div>
 
-{{ $posts->links() }}
+@if ($posts instanceof \Illuminate\Pagination\LengthAwarePaginator)
+    {{ $posts->links() }}
+@endif
 
 @endsection
 
