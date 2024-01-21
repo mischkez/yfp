@@ -1,0 +1,57 @@
+version: '3.8'
+services:
+  webserver:
+    container_name: web
+    image: nginx:alpine
+    volumes:
+      - ./server/nginx.conf:/etc/nginx/nginx.conf
+      - ./server/fastcgi-php.conf:/etc/nginx/snippets/fastcgi-php.conf
+    ports:
+      - "80:80"
+    networks:
+      - app-network
+
+  apps:
+    container_name: apps
+    build:
+      dockerfile: Dockerfile
+    volumes:
+      - ./larablog:/var/www/larablog
+      - ./symfoblog:/var/www/symfoblog
+    networks:
+      - app-network
+
+  # MySQL Master - Slave Replication
+  mysql_master:
+    image: mysql:latest
+    env_file:
+      - ./mysql/master/mysql_master.env
+    container_name: "mysql_master"
+    restart: "no"
+    ports:
+      - 4406:3306
+    volumes:
+      - ./mysql/master/conf/mysql.conf.cnf:/etc/mysql/conf.d/mysql.conf.cnf
+      - ./mysql/master/data:/var/lib/mysql
+    networks:
+      - app-network
+
+  mysql_slave:
+    image: mysql:latest
+    env_file:
+      - ./mysql/slave/mysql_slave.env
+    container_name: "mysql_slave"
+    restart: "no"
+    ports:
+      - 5506:3306
+    depends_on:
+      - mysql_master
+    volumes:
+      - ./mysql/slave/conf/mysql.conf.cnf:/etc/mysql/conf.d/mysql.conf.cnf
+      - ./mysql/slave/data:/var/lib/mysql
+    networks:
+      - app-network
+
+networks:
+  app-network:
+
