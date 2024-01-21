@@ -4,6 +4,12 @@ For learning purposes only.
 It's meant to test how Symfony and Laravel work with multiple databases.
 The setup is simple, we have 1 master with 2 databases and 1 slave db replicating the master's databases.
 
+Files for setting up the databases:
+
+- larablog/.env (Laravel's environment file)
+- larablog/config/database.php (Laravel's database configuration file)
+- larablog/database/migrations/ (Laravel's migrations)
+
 ## Table of Contents
 
 - [Installation](#installation)
