@@ -35,13 +35,20 @@ return [
 
     'connections' => [
         'mysql' => [
-            'url' => env('DB_READ_URL'),
             'driver' => 'mysql',
             'read' => [
-                'url' => env('DB_READ_URL'), // can also be an array of urls then the random one will be selected
+                [
+                    'host' => 'mysql_slave',
+                    'username' => 'slave_user',
+                    'password' => 'slave_password',
+                    'database' => 'blog',
+                ],
             ],
             'write' => [
-                'url' => env('DB_WRITE_URL'),
+                'host' => 'mysql_master',
+                'username' => 'master_user',
+                'password' => 'master_password',
+                'database' => 'blog',
             ],
             'sticky' => true, // replication lag
             'unix_socket' => env('DB_SOCKET', ''),
