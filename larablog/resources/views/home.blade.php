@@ -7,4 +7,8 @@
 
     @each('posts._post', $posts, 'post')
 </div>
+
+{{ $posts->links() }}
+
 @endsection
+
