@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class OrderItemFactory extends Factory
 {
+    protected $model = \App\Models\OrderItem::class;
+
     /**
      * Define the model's default state.
      *
@@ -17,7 +19,9 @@ class OrderItemFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'order_id' => OrderFactory::new(),
+            'feature_id' => PremiumFeatureFactory::new(),
+            'quantity' => $this->faker->numberBetween(1, 3),
         ];
     }
 }

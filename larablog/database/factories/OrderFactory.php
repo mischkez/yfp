@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class OrderFactory extends Factory
 {
+    protected $model = \App\Models\Order::class;
+
     /**
      * Define the model's default state.
      *
@@ -17,7 +19,9 @@ class OrderFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'user_id' => UserFactory::new(),
+            'total' => $this->faker->randomFloat(2, 0, 1000),
+            'is_paid' => $this->faker->boolean,
         ];
     }
 }

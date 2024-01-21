@@ -5,11 +5,11 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\PremiumFeature>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Tag>
  */
-class PremiumFeatureFactory extends Factory
+class TagFactory extends Factory
 {
-    protected $model = \App\Models\PremiumFeature::class;
+    protected $model = \App\Models\Tag::class;
 
     /**
      * Define the model's default state.
@@ -20,8 +20,6 @@ class PremiumFeatureFactory extends Factory
     {
         return [
             'name' => $this->faker->unique()->word,
-            'price' => $this->faker->numberBetween(10, 100),
-            'description' => $this->faker->paragraph,
         ];
     }
 }
