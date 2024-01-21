@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class PremiumFeature extends Model
 {
     use HasFactory;
+
+    protected $connection = 'blog_premium';
+
+    protected $table = 'features';
 }

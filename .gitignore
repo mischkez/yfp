@@ -2,3 +2,5 @@
 .idea
 data/*
 .vscode
+./mysql/slave/data/*
+./mysql/master/data/*
