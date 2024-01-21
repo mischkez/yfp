@@ -4,11 +4,20 @@ For learning purposes only.
 It's meant to test how Symfony and Laravel work with multiple databases.
 The setup is simple, we have 1 master with 2 databases and 1 slave db replicating the master's databases.
 
-Files for setting up the databases:
+Files for setting up the databases Laravel:
 
-- larablog/.env (Laravel's environment file)
-- larablog/config/database.php (Laravel's database configuration file)
-- larablog/database/migrations/ (Laravel's migrations)
+   - larablog/.env (Laravel's environment file)
+   - larablog/config/database.php (Laravel's database configuration file)
+   - larablog/database/migrations/ (Laravel's migrations)
+
+The most important things to note:
+   
+   - We define a connection for each database in the environment file.
+   - When creating a migration, we can specify the connection to use. (--database=connection_name)
+   - In a model file we can specify the connection to use. (protected $connection = 'connection_name';)
+   - In a model file we can as well specify the table to use. (protected $table = 'table_name';)
+   - In a controller we can specify the connection to use. (DB::connection('connection_name')->select(...);)
+   - The above is not necessary if we set the connection in the model file and we use models to query the database.
 
 ## Table of Contents
 
