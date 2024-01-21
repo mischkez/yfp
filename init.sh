@@ -1,19 +1,17 @@
 #!/bin/bash
 
 # Remove existing data
-sudo chown -R $USER:$USER ./mysql/master/data/
-sudo chown -R $USER:$USER ./mysql/slave/data/
-
+sudo chown -R $USER:$USER ./mysql
 find ./mysql/master/data/  -mindepth 1 -not -name '.gitkeep' -delete
 find ./mysql/slave/data/  -mindepth 1 -not -name '.gitkeep' -delete
 
 # Remove existing containers and images
-docker-codmpose down -v --remove-orphans
+docker-compose down -v --remove-orphans
 
 # Build and start the Docker containers
-docker-compose build
-docker-compose up -d
+docker-compose up -d --build
 
+# Wait for the master MySQL server to be ready
 until docker exec mysql_master sh -c 'export MYSQL_PWD=root; mysql -u root -e ";"'
 do
     echo "Waiting for mysql_master database connection..."
