@@ -2,9 +2,9 @@
 
 namespace Database\Factories\Blog;
 
+use App\Models\Blog\Post;
+use App\Models\Blog\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use \App\Models\Blog\User;
-use \App\Models\Blog\Post;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Blog\Comment>

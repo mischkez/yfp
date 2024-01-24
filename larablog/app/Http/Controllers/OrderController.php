@@ -13,7 +13,10 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $orders = Order::with(['items', 'items.feature'])
+            ->where('user_id', 1)->get();
+
+        return view('orders.index', compact('orders'));
     }
 
     /**

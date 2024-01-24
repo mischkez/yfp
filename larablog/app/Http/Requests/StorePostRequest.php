@@ -11,7 +11,7 @@ class StorePostRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true; // here we do the check if the user is authorized to create a post
     }
 
     /**
@@ -22,7 +22,8 @@ class StorePostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|max:255',
+            'category_id' => 'required|exists:categories,id',
+            'title' => 'required|max:255|unique:posts,title',
             'content' => 'required',
         ];
     }

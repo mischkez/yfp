@@ -3,9 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePostRequest;
+use App\Models\Blog\Category;
 
 class PostController extends Controller
 {
+    public function create()
+    {
+        $categories = Category::all();
+
+        return view('posts.create', compact('categories'));
+    }
+
     /**
      * Store a newly created resource in storage. Validation example.
      */
@@ -13,9 +21,8 @@ class PostController extends Controller
     {
         $validated = $request->validated();
 
-        // find the user that is currently logged in and create a post for that user
-        $post = current_user()->posts()->create($validated); // of course if admin is creating a post, we don't need to do this
+        $post = auth()->user()->posts()->create($validated);
 
-        return redirect()->route('posts.show', ['post' => $post->id]);
+        return redirect()->route('show_post', ['post' => $post->id]);
     }
 }

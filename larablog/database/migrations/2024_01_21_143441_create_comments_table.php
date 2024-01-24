@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('author_id');
-            $table->unsignedBigInteger('post_id');
+            $table->unsignedBigInteger('post_id'); // I could also for example use morphs('commentable') here and then i could comment on other models as well
             $table->text('content');
             $table->timestamps();
         });

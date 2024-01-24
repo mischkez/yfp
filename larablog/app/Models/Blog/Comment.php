@@ -20,5 +20,16 @@ class Comment extends Model
     {
         return $this->belongsTo(Post::class);
     }
-}
 
+
+    // Local scopes: For using something like Comment::approved()->get() we need to define a scope
+    public function scopeApproved($query)
+    {
+        return $query->where('approved', true);
+    }
+
+    public function scopeSpam($query)
+    {
+        return $query->where('spam', true);
+    }
+}

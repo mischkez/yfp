@@ -2,14 +2,15 @@
 
 namespace Database\Factories\BlogPremium;
 
+use App\Models\BlogPremium\PremiumFeature;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\BlogPremium\PremiumFeature>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<PremiumFeature>
  */
 class PremiumFeatureFactory extends Factory
 {
-    protected $model = \App\Models\BlogPremium\PremiumFeature::class;
+    protected $model = PremiumFeature::class;
 
     /**
      * Define the model's default state.

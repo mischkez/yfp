@@ -12,4 +12,9 @@ class PremiumFeature extends Model
     protected $connection = 'blog_premium';
 
     protected $table = 'features';
+
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class, 'order_items', 'feature_id', 'order_id');
+    }
 }
